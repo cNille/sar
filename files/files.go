@@ -10,6 +10,19 @@ import (
 
 var MatchCount int
 
+func ExtensionMatches(path string, extensions []string) bool {
+	if len(extensions) == 0 {
+		return true
+	}
+
+	for _, extension := range extensions {
+		if strings.HasSuffix(path, extension) {
+			return true
+		}
+	}
+	return false
+}
+
 func IsHidden(path string) bool {
 	// Check if file is hidden or in a hidden directory
 	// Split path into parts and check each part

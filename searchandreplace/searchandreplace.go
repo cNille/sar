@@ -104,6 +104,10 @@ func parseFile(path string, info os.FileInfo, search string, replace string, wri
 			return nil
 		}
 
+		if !files.ExtensionMatches(path, flags.Extensions) {
+			return nil
+		}
+
 		if isBin {
 			if flags.Verbose {
 				fmt.Printf("Skipping binary file: %s\n", path)
