@@ -15,6 +15,7 @@ var resetColor = "\033[0m"
 var redStart = "\033[1;31m"
 
 func Preview(searchArgs []string) (bool, error) {
+	files.MatchCount = 0
 	err := files.WalkDirectory(searchArgs[2], func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
@@ -36,6 +37,7 @@ func Preview(searchArgs []string) (bool, error) {
 }
 
 func Replace(searchArgs []string) error {
+	files.MatchCount = 0
 	err := files.WalkDirectory(searchArgs[2], func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
@@ -81,11 +83,15 @@ func replaceInFile(path, search, replace string, write bool) (bool, error) {
 			fmt.Printf("%s%s%s\n", blueStart, path, resetColor)
 			oldLines := strings.Split(string(read), "\n")
 			newLines := strings.Split(newContents, "\n")
+			matchFound := false
 			for i, line := range oldLines {
 				if line != newLines[i] {
 					fmt.Println(strings.Replace(line, search, redStart+search+resetColor, -1))
-					files.MatchCount++
+					matchFound = true
 				}
+			}
+			if matchFound {
+				files.MatchCount++
 			}
 		}
 		return true, nil
