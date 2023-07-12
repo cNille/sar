@@ -10,6 +10,7 @@ replace it with another string.
 - Preview mode to show where replacements would be made, without making the changes
 - Skip preview mode with the force-flag
 - Skip binary files automatically
+- Ability to include hidden files. (default is to ignore hidden directories and files)
 - Ability to specify multiple file extensions to limit the search
 
 ## Usage
@@ -35,8 +36,13 @@ To skip preview and change files directly mode:
 To specify file extensions:
 
 ```bash
-./sar -extension ".txt" -extension ".go" "search-string" "new-string"
-./directory-path
+./sar -extension ".txt" -extension ".go" "search-string" "new-string" ./my-dir
+```
+
+To include hidden files:
+
+```bash
+./sar -include-hidden "search-string" "new-string" .
 ```
 
 ## Installation
@@ -64,5 +70,6 @@ Here are some features planned for future versions of SAR:
   regret the last changes, SAR will be able to revert the files to their
   previous states.
 - Handle regex.
+- Allow to "split" and only confirm one file-change at a time.
 - Only use one argument for search and replace strings, like sed. Example: "s/search-str/new-str"
   - Would enable for more features than just substitute.
