@@ -62,6 +62,12 @@ or GOBIN directory. Use:
 go install .
 ```
 
+## Run tests
+
+```bash
+go test ./...
+```
+
 ## Future Features
 
 Here are some features planned for future versions of SAR:

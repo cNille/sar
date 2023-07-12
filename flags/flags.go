@@ -43,7 +43,8 @@ func Parse() ([]string, error) {
 }
 
 func Usage() {
-	fmt.Println("Usage: sar \"search-string\"  \"new-string\" ./my-folder")
+	fmt.Println("Usage: sar [OPTIONAL FLAGS] \"search-string\"  \"new-string\" ./my-folder")
+	fmt.Println("Note that the flags have to be specified before the search and replace strings.")
 	fmt.Println("\nOptional flags:")
 	fmt.Println("  -force: Force mode. If set, the script will make the replacements without asking for confirmation.")
 	fmt.Println("  -verbose: Verbose mode. If set, the script will print out all files it is processing.")

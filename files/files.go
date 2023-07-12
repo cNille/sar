@@ -15,6 +15,9 @@ func IsHidden(path string) bool {
 	// Split path into parts and check each part
 	pathParts := strings.Split(path, "/")
 	for _, part := range pathParts {
+		if part == "." || part == ".." {
+			continue
+		}
 		if strings.HasPrefix(part, ".") {
 			return true
 		}
